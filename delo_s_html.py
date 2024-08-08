@@ -1,7 +1,5 @@
-import csv
-import os
 import requests
-import re
+
 
 mojurl = 'https://mangafire.to/type/manga'
 mojime = 'mangafire.html'
