@@ -1,18 +1,18 @@
 import re
 import os
 
-mojdir = "HTML-ji"
-mojest = 95
+#mojdir = "HTML-ji"
+#mojest = 805
 
 
 def izlusci(directory, stran):
     naslovi = []
     poglavja = []
-    zanri = []
-    ocena = []
+    vrste = []
+    datumi = []
     
-    with open(os.path.join(directory, f"mangafire{stran}.html"), "r", encoding="utf-8") as dat:
-        besedilo = dat.read()
+    with open(os.path.join(directory, f"mangafire{stran}.html"), "r", encoding="utf-8") as datoteka:
+        besedilo = datoteka.read()
         
         vzorec_naslovi = r'alt="(?P<naslov>.*?)>'
         for nas in re.findall(vzorec_naslovi, besedilo):
@@ -27,15 +27,18 @@ def izlusci(directory, stran):
             poglavja.append(float(pog))
 
         
-        vzorec_zanri = r'<b class="text-primary">.*?</b>'
-        b = re.findall(vzorec_zanri, besedilo)
-        print(b)
+        vzorec_vrsta = r'<span class="type">(?P<vrste>.*?)</span>'
+        vrste = re.findall(vzorec_vrsta, besedilo)
 
+        vzorec_datumi = r'<ul class="content" data-name="chap"> <li> <a href="/read/.*?/.*?/chapter-.*?"> <span>Chap .*? <b>.*?</b></span> <span>(?P<datum>.*?)</span>'
+        dat = re.findall(vzorec_datumi, besedilo)
+        for datum in dat:
+            if "ago" in datum:
+                datumi.append("Aug 10, 2024")
+            else:
+                datumi.append(datum)
 
-
-        
-    return ocena
-
-izlusci("HTML-ji", 1)
+        izpisi = zip(naslovi, vrste, poglavja, datumi)
+    return list(izpisi)
 
 
