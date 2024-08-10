@@ -10,7 +10,7 @@ vsi_podatki = []
 for i in range(1,806):
     url = mojurl + f"{i}"
     ime = "mangafire" + f"{i}" + ".html"
-    #pridobi_html(url, mojdir, ime)
+    pridobi_html(url, mojdir, ime)
     vsi_podatki += izlusci(mojdir, i)
 
 write_csv(vsi_podatki)

@@ -2,7 +2,7 @@ import re
 import os
 
 #mojdir = "HTML-ji"
-#mojest = 805
+#mojest = 1
 
 
 def izlusci(directory, stran):
