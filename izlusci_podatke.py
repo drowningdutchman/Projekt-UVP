@@ -2,7 +2,7 @@ import re
 import os
 
 #mojdir = "HTML-ji"
-#mojest = 1
+#mojest = 6
 
 
 def izlusci(directory, stran):
@@ -34,11 +34,13 @@ def izlusci(directory, stran):
         dat = re.findall(vzorec_datumi, besedilo)
         for datum in dat:
             if "ago" in datum:
-                datumi.append("Aug 10, 2024")
+                datumi.append(int("2024"))
             else:
-                datumi.append(datum)
+                dela = datum.split(",")
+                datumi.append(int(dela[1]))
 
         izpisi = zip(naslovi, vrste, poglavja, datumi)
+
     return list(izpisi)
 
 
